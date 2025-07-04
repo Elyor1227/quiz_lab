@@ -1,38 +1,208 @@
+/* src/App.css yoki umumiy style fayl */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #222;
+}
+
 .App {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+input:focus,
+select:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+button {
+  background-color: #4a90e2;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+}
+
+button:hover {
+  background-color: #357ABD;
+}
+
+@media (max-width: 600px) {
+  .App {
+    padding: 1rem;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+
+  h2, h3 {
+    font-size: 1.3rem;
+  }
+}
+
+
+/* src/components/Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar__logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.navbar__links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.navbar__links a:hover {
+  color: #007bff;
+}
+
+/* src/components/Hero.css */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 2rem;
+  flex-wrap: wrap;
+}
+
+.hero__content {
+  max-width: 500px;
+}
+.hero__content h1{
+  font-size: 42px;
+}
+.hero__buttons {
+  margin-top: 1.5rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.hero__image img {
+  width: 300px;
+  height: 300px;
+  border-radius: 16px;
+}
+
+/* src/components/Features.css */
+.features {
+  padding: 2rem;
+  text-align: center;
+  background-color: #fafafa;
+}
+
+.features__grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.feature-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: 1rem;
+  max-width: 250px;
+  transition: transform 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* src/components/Testimonials.css */
+.testimonials {
+  padding: 2rem;
+  background-color: #ffffff;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.testimonial__grid {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.testimonial-card {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 1rem;
+  max-width: 250px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.testimonial-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+/* src/components/Footer.css */
+.footer {
+  padding: 1rem;
+  text-align: center;
+  background-color: #f1f1f1;
+  color: #555;
+  margin-top: 3rem;
 }
