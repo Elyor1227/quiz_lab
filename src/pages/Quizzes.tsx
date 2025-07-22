@@ -59,27 +59,41 @@ const Quizzes: React.FC = () => {
   const q = quiz[current];
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Savol {current + 1} / {quiz.length}</h2>
-      <p style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{q.question}</p>
-      <div style={{ marginTop: '1rem' }}>
-        {q.options.map((opt, i) => (
-          <div key={i} style={{margin: '20px 0', border: '1px solid #333', borderRadius: '10px', padding: ' 10px'}}>
-            <label style={{display:'flex', justifyContent: 'space-between', alignItems: 'center',}}>
-                <div>{String.fromCharCode(65 + i)}. {opt}</div>
+    <div className="quiz-container">
+      <h2>
+        Savol {current + 1} / {quiz.length}
+        <div className="quiz-progress">
+          <div
+            className="quiz-progress-bar"
+            style={{ width: `${((current + 1) / quiz.length) * 100}%` }}
+          />
+        </div>
+      </h2>
+      <div className="quiz-question-card">
+        <p className="quiz-question">{q.question}</p>
+        <div className="quiz-options">
+          {q.options.map((opt, i) => (
+            <label
+              key={i}
+              className={`quiz-option-card${selected === i ? ' selected' : ''}`}
+              tabIndex={0}
+            >
+              <span>{String.fromCharCode(65 + i)}. {opt}</span>
               <input
                 type="radio"
                 name="answer"
                 value={i}
-                style={{ width: '20px'}}
                 checked={selected === i}
                 onChange={() => setSelected(i)}
-              />{" "}
+                style={{ display: 'none' }}
+              />
             </label>
-          </div>
-        ))}
+          ))}
+        </div>
+        <button className="btn btn-primary" onClick={handleAnswer} style={{ marginTop: '1rem' }}>
+          Keyingi
+        </button>
       </div>
-      <button onClick={handleAnswer} style={{ marginTop: '1rem' }}>Keyingi</button>
     </div>
   );
 };

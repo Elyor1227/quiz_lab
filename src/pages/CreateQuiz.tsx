@@ -43,7 +43,7 @@ const CreateQuiz: React.FC = () => {
 
   const handleSave = () => {
     localStorage.setItem('quiz', JSON.stringify(quiz));
-    alert('Quiz saqlandi!');
+    alert('Quiz saqlandi!');  
   };
   return (
     <div style={{ padding: '2rem', maxWidth: '800px', margin: 'auto' }}>
