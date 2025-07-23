@@ -33,11 +33,13 @@ const Result: React.FC<Props> = ({ total, correct }) => {
   };
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '500px', margin: 'auto', textAlign: 'center' }}>
+    <div className="result-container">
       <h2>Test Natijasi</h2>
       <p>To‘g‘ri javoblar: {correct} / {total}</p>
       <p>Foizda: <strong>{percent}%</strong></p>
-      <Pie data={data} />
+      <div className="result-chart-area">
+        <Pie data={data} />
+      </div>
     </div>
   );
 };

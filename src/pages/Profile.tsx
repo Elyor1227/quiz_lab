@@ -1,5 +1,5 @@
 // src/pages/Profile.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Profile: React.FC = () => {
   const user = {
@@ -8,6 +8,13 @@ const Profile: React.FC = () => {
     role: "Admin",
     joined: "2024-12-01",
   };
+
+  const [results, setResults] = useState<any[]>([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('results');
+    if (stored) setResults(JSON.parse(stored));
+  }, []);
 
   return (
     <div className="profile-container"> 
@@ -21,6 +28,18 @@ const Profile: React.FC = () => {
           <p><strong>Joined:</strong> {user.joined}</p>
         </div>
       </div>
+      <h3>Test Natijalari</h3>
+      {results.length === 0 ? (
+        <p>Hali natijalar yo‘q.</p>
+      ) : (
+        <ul>
+          {results.map((r, i) => (
+            <li key={i}>
+              <strong>{r.section}</strong>: {r.score}/{r.total} ({Math.round((r.score/r.total)*100)}%) — {new Date(r.date).toLocaleString()}
+            </li>
+          ))}
+        </ul>
+      )}
     </div> 
   );
 };
