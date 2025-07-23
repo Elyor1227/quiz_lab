@@ -32,10 +32,14 @@ const Profile: React.FC = () => {
       {results.length === 0 ? (
         <p>Hali natijalar yo‘q.</p>
       ) : (
-        <ul>
+        <ul className="profile-results-list">
           {results.map((r, i) => (
-            <li key={i}>
-              <strong>{r.section}</strong>: {r.score}/{r.total} ({Math.round((r.score/r.total)*100)}%) — {new Date(r.date).toLocaleString()}
+            <li className="profile-result-item" key={i}>
+              <div>
+                <strong>{r.section}</strong>
+                <span className="profile-result-score">{r.score}/{r.total} ({Math.round((r.score/r.total)*100)}%)</span>
+              </div>
+              <div className="profile-result-date">{new Date(r.date).toLocaleString()}</div>
             </li>
           ))}
         </ul>

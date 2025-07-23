@@ -809,3 +809,40 @@ button:hover {
     padding: 1rem 0.5rem;
   }
 }
+
+/* --- Profile Test Results Enhanced Styles --- */
+.profile-results-list {
+  margin-top: 1.5rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-result-item {
+  background: #f5f7fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.06);
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.08rem;
+}
+
+.profile-result-item strong {
+  color: #357ABD;
+  margin-right: 0.5rem;
+}
+
+.profile-result-score {
+  font-weight: bold;
+  color: #4a90e2;
+  margin-left: 0.5rem;
+}
+
+.profile-result-date {
+  color: #888;
+  font-size: 0.98rem;
+  margin-top: 0.2rem;
+}
