@@ -1,7 +1,9 @@
 // src/pages/Profile.tsx
 import React, { useEffect, useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 const Profile: React.FC = () => {
+  const { theme } = useTheme();
   const user = {
     name: "Elyorbek Mengto’rayev",
     email: "elyorbek@example.com",
@@ -17,9 +19,9 @@ const Profile: React.FC = () => {
   }, []);
 
   return (
-    <div className="profile-container"> 
+    <div className={`profile-container theme-${theme}`}> 
       <h2>Your Profile</h2>
-      <div className="profile-card">
+      <div className={`profile-card theme-${theme}`}>
         <img src={`https://ui-avatars.com/api/?name=${user.name}&background=4a90e2&color=fff`} alt="avatar" />
         <div className="profile-info">
           <p><strong>Name:</strong> {user.name}</p>
@@ -34,7 +36,7 @@ const Profile: React.FC = () => {
       ) : (
         <ul className="profile-results-list">
           {results.map((r, i) => (
-            <li className="profile-result-item" key={i}>
+            <li className={`profile-result-item theme-${theme}`} key={i}>
               <div>
                 <strong>{r.section}</strong>
                 <span className="profile-result-score">{r.score}/{r.total} ({Math.round((r.score/r.total)*100)}%)</span>

@@ -1,6 +1,7 @@
 // src/pages/CreateQuiz.tsx
 import React, { useState, useEffect } from 'react';
 import EditQuestionModal from '../components/EditQueastionModal';
+import { useTheme } from '../context/ThemeContext';
 
 type QuizType = 'single' | 'multi' | 'truefalse';
 type QuizQuestion = {
@@ -16,6 +17,7 @@ type QuizQuestion = {
 const defaultSections = ['Math', 'Science', 'History'];
 
 const CreateQuiz: React.FC = () => {
+  const { theme } = useTheme();
   const [quiz, setQuiz] = useState<QuizQuestion[]>([]);
   const [sections, setSections] = useState<string[]>(defaultSections);
   const [selectedSection, setSelectedSection] = useState<string>('');
@@ -140,7 +142,7 @@ const CreateQuiz: React.FC = () => {
 
   if (!selectedSection) {
     return (
-      <div className="create-quiz-container">
+      <div className={`create-quiz-container theme-${theme}`}>
         <h2>Sections</h2>
         <div className="quiz-preview" style={{ marginBottom: '2rem' }}>
           {sections.length === 0 ? <p>Hali sectionlar yo‘q.</p> : (
@@ -148,7 +150,7 @@ const CreateQuiz: React.FC = () => {
               {sections.map(sec => (
                 <button
                   key={sec}
-                  className="btn btn-primary"
+                  className={`btn btn-primary theme-${theme}`}
                   style={{ minWidth: 120 }}
                   onClick={() => setSelectedSection(sec)}
                 >
@@ -162,7 +164,7 @@ const CreateQuiz: React.FC = () => {
           <label>Yangi section qo‘shish:</label>
           <input
             type="text"
-            className="input"
+            className={`input theme-${theme}`}
             placeholder="Section nomi"
             value={newSection}
             onChange={e => setNewSection(e.target.value)}
@@ -175,16 +177,16 @@ const CreateQuiz: React.FC = () => {
   }
 
   return (
-    <div className="create-quiz-container">
+    <div className={`create-quiz-container theme-${theme}`}>
       <h2>{selectedSection} - Quizlar</h2>
       <div className="button-group" style={{ marginBottom: '1rem' }}>
-        <button className="btn" onClick={() => setSelectedSection('')}>Barcha sectionlar</button>
-        <button className="btn" onClick={handleExportSectionWord}>Export (Word)</button>
+        <button className={`btn theme-${theme}`} onClick={() => setSelectedSection('')}>Barcha sectionlar</button>
+        <button className={`btn theme-${theme}`} onClick={handleExportSectionWord}>Export (Word)</button>
       </div>
       <div className="create-quiz-form">
         <div className="form-group">
           <label>Test turi:</label>
-          <select className="input" value={quizType} onChange={e => setQuizType(e.target.value as QuizType)}>
+          <select className={`input theme-${theme}`} value={quizType} onChange={e => setQuizType(e.target.value as QuizType)}>
             <option value="single">Single (1 ta to‘g‘ri javob)</option>
             <option value="multi">Multi-choice (bir nechta to‘g‘ri javob)</option>
             <option value="truefalse">True/False</option>
@@ -196,7 +198,7 @@ const CreateQuiz: React.FC = () => {
             type="text"
             value={question}
             onChange={e => setQuestion(e.target.value)}
-            className="input"
+            className={`input theme-${theme}`}
           />
         </div>
         {quizType === 'truefalse' ? null : options.map((opt, index) => (
@@ -210,7 +212,7 @@ const CreateQuiz: React.FC = () => {
                 updated[index] = e.target.value;
                 return updated;
               })}
-              className="input"
+              className={`input theme-${theme}`}
             />
             {quizType === 'multi' && (
               <input
@@ -232,7 +234,7 @@ const CreateQuiz: React.FC = () => {
             <select
               value={correctAnswerIndex}
               onChange={e => setCorrectAnswerIndex(Number(e.target.value))}
-              className="input"
+              className={`input theme-${theme}`}
             >
               {options.map((_, index) => (
                 <option key={index} value={index}>
@@ -248,7 +250,7 @@ const CreateQuiz: React.FC = () => {
             <select
               value={correctAnswerIndex}
               onChange={e => setCorrectAnswerIndex(Number(e.target.value))}
-              className="input"
+              className={`input theme-${theme}`}
             >
               <option value={0}>True</option>
               <option value={1}>False</option>
@@ -256,7 +258,7 @@ const CreateQuiz: React.FC = () => {
           </div>
         )}
         <div className="button-group">
-          <button className="btn btn-primary" onClick={handleAddQuestion}>Add Question</button>
+          <button className={`btn btn-primary theme-${theme}`} onClick={handleAddQuestion}>Add Question</button>
         </div>
       </div>
       <hr className="divider" />
@@ -266,7 +268,7 @@ const CreateQuiz: React.FC = () => {
           <p>Hali testlar yo‘q.</p>
         ) : (
           sectionQuestions.map((q, i) => (
-            <div className="preview-card" key={q.id}>
+            <div className={`preview-card theme-${theme}`} key={q.id}>
               <strong>{q.question}</strong>
               <ul>
                 {q.options.map((opt, j) => {
@@ -281,8 +283,8 @@ const CreateQuiz: React.FC = () => {
                   );
                 })}
               </ul>
-              <button className="btn btn-danger btn-sm" onClick={() => handleDelete(q.id)}>Delete</button>
-              <button className="btn btn-primary btn-sm" onClick={() => setEditIndex(i)}>Edit</button>
+              <button className={`btn btn-danger btn-sm theme-${theme}`} onClick={() => handleDelete(q.id)}>Delete</button>
+              <button className={`btn btn-primary btn-sm theme-${theme}`} onClick={() => setEditIndex(i)}>Edit</button>
             </div>
           ))
         )}

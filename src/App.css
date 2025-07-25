@@ -1,22 +1,90 @@
 /* src/App.css yoki umumiy style fayl */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f7fa;
-  color: #222;
+  min-height: 100vh;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  transition: background 0.4s;
+  /* background: olib tashlandi, faqat theme-dark/theme-light ishlaydi */
+}
+
+body.theme-dark {
+  background: linear-gradient(135deg, #181c2a 0%, #232946 100%);
+  color: #f4f4f4;
+}
+body.theme-light {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e2e8f0 100%);
+  color: #232946;
+}
+
+/* Universal card styles */
+.theme-dark .feature-card,
+.theme-dark .testimonial-card,
+.theme-dark .profile-card,
+.theme-dark .quiz-container,
+.theme-dark .create-quiz-container,
+.theme-dark .result-container,
+.theme-dark .hero,
+.theme-dark .footer,
+.theme-dark .features,
+.theme-dark .testimonials,
+.theme-dark .modal {
+  background: #181c2a;
+  color: #f4f4f4;
+  box-shadow: 0 4px 24px rgba(24,28,42,0.18);
+}
+.theme-light .feature-card,
+.theme-light .testimonial-card,
+.theme-light .profile-card,
+.theme-light .quiz-container,
+.theme-light .create-quiz-container,
+.theme-light .result-container,
+.theme-light .modal {
+  background: #fff;
+  color: #232946;
+  box-shadow: 0 4px 24px rgba(74,144,226,0.10);
+}
+
+.theme-dark .feature-card h3,
+.theme-dark .testimonial-card h3,
+.theme-dark .profile-info p strong,
+.theme-dark .result-container h2 {
+  color: #ffe082;
+}
+.theme-light .feature-card h3,
+.theme-light .testimonial-card h3,
+.theme-light .profile-info p strong,
+.theme-light .result-container h2 {
+  color: #357ABD;
+}
+
+.theme-dark .feature-card p,
+.theme-dark .testimonial-card p,
+.theme-dark .profile-info p,
+.theme-dark .result-container p {
+  color: #e0e7ff;
+}
+.theme-light .feature-card p,
+.theme-light .testimonial-card p,
+.theme-light .profile-info p,
+.theme-light .result-container p {
+  color: #333;
+}
+
+#root {
+  min-height: 100vh;
+  background: transparent;
 }
 
 .App {
   max-width: 900px;
   margin: 0 auto;
   padding: 1.5rem;
+  background: transparent;
 }
 
 input,
 select,
 button {
-  width: 100%;
+  /* width: 100%; */
   padding: 0.7rem;
   margin-top: 0.3rem;
   margin-bottom: 1rem;
@@ -42,6 +110,72 @@ button {
 
 button:hover {
   background-color: #357ABD;
+}
+
+.theme-dark button,
+.theme-dark .btn,
+.theme-dark .btn-primary {
+  background: #232946;
+  color: #ffe082;
+  border: 1px solid #ffe082;
+  box-shadow: 0 2px 8px rgba(255,224,130,0.08);
+}
+.theme-light button,
+.theme-light .btn,
+.theme-light .btn-primary {
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(74,144,226,0.08);
+}
+.theme-dark button:hover,
+.theme-dark .btn:hover,
+.theme-dark .btn-primary:hover {
+  background: #181c2a;
+  color: #fff;
+  border-color: #ffe082;
+}
+.theme-light button:hover,
+.theme-light .btn:hover,
+.theme-light .btn-primary:hover {
+  background: #357ABD;
+  color: #ffe082;
+}
+.theme-dark .btn-secondary {
+  background: #181c2a;
+  color: #ffe082;
+  border: 1px solid #ffe082;
+}
+.theme-light .btn-secondary {
+  background: #f0f0f0;
+  color: #357ABD;
+  border: 1px solid #4a90e2;
+}
+.theme-dark .btn-secondary:hover {
+  background: #232946;
+  color: #fff;
+}
+.theme-light .btn-secondary:hover {
+  background: #e3f0ff;
+  color: #4a90e2;
+}
+.theme-dark .btn-danger {
+  background: #3a1a1a;
+  color: #ffb4b4;
+  border: 1px solid #ffb4b4;
+}
+.theme-light .btn-danger {
+  background: #fff0f0;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+}
+.theme-dark .btn-danger:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+.theme-light .btn-danger:hover {
+  background: #d32f2f;
+  color: #fff;
 }
 
 @media (max-width: 600px) {
@@ -128,6 +262,42 @@ button:hover {
 .navbar__links a:focus::after {
   width: 100%;
   background: #ffe082;
+}
+
+.navbar {
+  background: transparent;
+}
+
+.theme-light .navbar {
+  background: #fff;
+  color: #232946;
+}
+.theme-dark .navbar {
+  background: #232946;
+  color: #f4f4f4;
+}
+
+.theme-dark .navbar__links a {
+  color: #f4f4f4;
+}
+.theme-light .navbar__links a {
+  color: #232946;
+}
+
+.theme-dark .navbar__links a:hover,
+.theme-dark .navbar__links a:focus {
+  color: #ffe082;
+}
+.theme-light .navbar__links a:hover,
+.theme-light .navbar__links a:focus {
+  color: #357ABD;
+}
+
+.theme-dark .navbar__links a::after {
+  background: #ffe082;
+}
+.theme-light .navbar__links a::after {
+  background: #357ABD;
 }
 
 @media (max-width: 700px) {
@@ -845,4 +1015,13 @@ button:hover {
   color: #888;
   font-size: 0.98rem;
   margin-top: 0.2rem;
+}
+
+.theme-dark .profile-result-item {
+  background: #232946;
+  color: #f4f4f4;
+}
+.theme-light .profile-result-item {
+  background: #f5f7fa;
+  color: #232946;
 }

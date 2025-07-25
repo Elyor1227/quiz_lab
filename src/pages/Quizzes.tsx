@@ -1,6 +1,7 @@
 // src/pages/Quizzes.tsx
 import React, { useEffect, useState } from 'react';
 import Result from './Result';
+import { useTheme } from '../context/ThemeContext';
 
 type QuizQuestion = {
   id: number;
@@ -20,6 +21,7 @@ function getFeedback(percent: number) {
 }
 
 const Quizzes: React.FC = () => {
+  const { theme } = useTheme();
   const [quiz, setQuiz] = useState<QuizQuestion[]>([]);
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -86,14 +88,14 @@ const Quizzes: React.FC = () => {
   // If no section is selected, only show the section selector
   if (!section) {
     return (
-      <div className="quiz-container">
+      <div className={`quiz-container theme-${theme}`}>
         <h2>Section tanlang</h2>
         <div style={{ marginBottom: '1.5rem' }}>
           {sections.length === 0 ? (
             <p>No sections found. Please add quizzes in the Create Quiz page.</p>
           ) : (
             <select
-              className="input"
+              className={`input theme-${theme}`}
               value={section}
               onChange={e => {
                 setSection(e.target.value);
@@ -117,11 +119,11 @@ const Quizzes: React.FC = () => {
   // If no questions for the selected section
   if (quizForSection.length === 0) {
     return (
-      <div className="quiz-container">
+      <div className={`quiz-container theme-${theme}`}>
         <h2>Section: {section}</h2>
         <div style={{ marginBottom: '1.5rem' }}>
           <select
-            className="input"
+            className={`input theme-${theme}`}
             value={section}
             onChange={e => {
               setSection(e.target.value);
@@ -159,11 +161,11 @@ const Quizzes: React.FC = () => {
   if (finished) {
     const percent = Math.round((score / quizForSection.length) * 100);
     return (
-      <div className="quiz-container">
+      <div className={`quiz-container theme-${theme}`}>
         <h2>Test tugadi!</h2>
         <p>To‘g‘ri javoblar soni: {score} / {quizForSection.length}</p>
         <p>Natija: <strong>{percent}%</strong></p>
-        <p style={{ fontWeight: 'bold', fontSize: '1.2rem', color: '#357ABD' }}>{getFeedback(percent)}</p>
+        <p style={{ fontWeight: 'bold', fontSize: '1.2rem', color: theme === 'dark' ? '#ffe082' : '#357ABD' }}>{getFeedback(percent)}</p>
         <Result total={quizForSection.length} correct={score} />
         <div style={{ margin: '2rem 0' }}>
           <h3>Savollar va javoblaringiz:</h3>
@@ -193,7 +195,7 @@ const Quizzes: React.FC = () => {
         </div>
         <div style={{ marginTop: '2rem' }}>
           <button
-            className="btn"
+            className={`btn theme-${theme}`}
             onClick={() => {
               setSection('');
               setCurrent(0);
@@ -213,7 +215,7 @@ const Quizzes: React.FC = () => {
   const q = quizForSection[current];
 
   return (
-    <div className="quiz-container">
+    <div className={`quiz-container theme-${theme}`}>
       <h2>
         Savol {current + 1} / {quizForSection.length}
         <div className="quiz-progress">
@@ -223,14 +225,14 @@ const Quizzes: React.FC = () => {
           />
         </div>
       </h2>
-      <div style={{ marginBottom: '1.5rem', fontWeight: 'bold', color: timer <= 5 ? '#d32f2f' : '#357ABD' }}>
+      <div style={{ marginBottom: '1.5rem', fontWeight: 'bold', color: timer <= 5 ? '#d32f2f' : (theme === 'dark' ? '#ffe082' : '#357ABD') }}>
         Qolgan vaqt: {timer} soniya
       </div>
       <div style={{ marginBottom: '1.5rem' }}>
         <label htmlFor="section-select"><strong>Section:</strong></label>
         <select
           id="section-select"
-          className="input"
+          className={`input theme-${theme}`}
           value={section}
           onChange={e => {
             setSection(e.target.value);
@@ -252,7 +254,7 @@ const Quizzes: React.FC = () => {
           {q.options.map((opt, i) => (
             <label
               key={i}
-              className={`quiz-option-card${selected === i ? ' selected' : ''}`}
+              className={`quiz-option-card${selected === i ? ' selected' : ''} theme-${theme}`}
               tabIndex={0}
             >
               <span>{String.fromCharCode(65 + i)}. {opt}</span>
@@ -267,7 +269,7 @@ const Quizzes: React.FC = () => {
             </label>
           ))}
         </div>
-        <button className="btn btn-primary" onClick={handleAnswer} style={{ marginTop: '1rem' }}>
+        <button className={`btn btn-primary theme-${theme}`} onClick={handleAnswer} style={{ marginTop: '1rem' }}>
           Keyingi
         </button>
       </div>

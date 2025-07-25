@@ -1,5 +1,6 @@
 // src/components/Testimonials.tsx
 import React from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 const testimonials = [
   {
@@ -15,8 +16,9 @@ const testimonials = [
 ];
 
 const Testimonials: React.FC = () => {
+  const { theme } = useTheme();
   return (
-    <section className="testimonials">
+    <section className={`testimonials theme-${theme}`}>
       <h2>Testimonials</h2>
       <div className="testimonial__grid">
         {testimonials.map((t, index) => (
